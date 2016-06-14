@@ -16,7 +16,40 @@ table {
     color: #c0c0c0;
 }*/
 tr > td > span.pct-positive { color: green;}
+
 tr > td > span.pct-negative{ color: red; }
+
+tr > td > span.pct-negative::after {
+position: relative;
+  top: 0;
+  margin-left: 3px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-size: .7em;
+  font-weight: normal;
+  line-height: 1em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content:"\e114";
+
+}
+
+tr > td > span.pct-positive::after {
+position: relative;
+  top: 0;
+  margin-left: 3px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-size: .7em;
+  font-weight: normal;
+  line-height: 1em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content:"\e113";
+
+}
 
 table.dataTable thead td, table.dataTable thead th {
     background-color: #fdfdfd;
@@ -34,3 +67,4 @@ img.sparkline {
 }
 
 .no-wrap{white-space:nowrap}
+
