@@ -1,0 +1,22 @@
+.currency-logo {
+    margin-right: 5px;
+    margin-top: -4px;
+    width: 16px;
+    height: 16px;
+}
+/*.dollar:before {
+    content: '$ ';
+    font-size: 1em;
+    color: #c0c0c0;
+}*/
+tr > td > span.pct-positive { color: green;}
+tr > td > span.pct-negative{ color: red; }
+
+table.dataTable thead td, table.dataTable thead th {
+    background-color: #fdfdfd;
+    border-bottom: 1px solid #ffcb7f;
+}
+
+.font-bold {
+  font-weight: bold;
+}

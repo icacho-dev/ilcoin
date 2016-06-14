@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html >
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+		<!-- Styles -->
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<!-- DataTables CSS -->
+		<link rel="stylesheet" href="js/datatables/media/css/jquery.dataTables.min.css">
+		<link rel="stylesheet" href="js/datatables/dataTables-responsive/css/dataTables.responsive.css">
+
+		<link rel="stylesheet" href="js/angular-datatables/dist/css/angular-datatables.min.css">
+		<!-- Custom CSS -->
+		<link rel="stylesheet" href="css/business.css">
+    <link rel="stylesheet" href="css/default.css" >
+
+		<title>ILCoin - table v.1.0.2</title>
+
+	</head>
+	<body ng-app="showCase">
+		<!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <img src="http://placehold.it/150x50&text=Logo" alt="">
+                </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="#">Services</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Heading Row -->
+        <div class="row">
+            <div class="col-md-8">
+                <img class="img-responsive img-rounded" src="http://placehold.it/900x350" alt="">
+            </div>
+            <!-- /.col-md-8 -->
+            <div class="col-md-4">
+                <h1>CryptoCurrencies</h1>
+                <p>This is a template that is great for small businesses. It doesn't have too much fancy flare to it, but it makes a great use of the standard Bootstrap core components. Feel free to use this template for any project you want!</p>
+                <a class="btn btn-primary btn-lg" href="#">Call to Action!</a>
+            </div>
+            <!-- /.col-md-4 -->
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Call to Action Well -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="well text-center">
+                    This is a well that is a great spot for a business tagline or phone number for easy access!
+                </div>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <!-- Content Row -->
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Heading 1</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe rem nisi accusamus error velit animi non ipsa placeat. Recusandae, suscipit, soluta quibusdam accusamus a veniam quaerat eveniet eligendi dolor consectetur.</p>
+                <a class="btn btn-default" href="#">More Info</a>
+            </div>
+            <!-- /.col-md-4 -->
+            <div class="col-md-4">
+                <h2>Heading 2</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe rem nisi accusamus error velit animi non ipsa placeat. Recusandae, suscipit, soluta quibusdam accusamus a veniam quaerat eveniet eligendi dolor consectetur.</p>
+                <a class="btn btn-default" href="#">More Info</a>
+            </div>
+            <!-- /.col-md-4 -->
+            <div class="col-md-4">
+                <h2>Heading 3</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe rem nisi accusamus error velit animi non ipsa placeat. Recusandae, suscipit, soluta quibusdam accusamus a veniam quaerat eveniet eligendi dolor consectetur.</p>
+                <a class="btn btn-default" href="#">More Info</a>
+            </div>
+            <!-- /.col-md-4 -->
+        </div>
+        <!-- /.row -->
+
+				<!-- { "id": "dash", "name": "Dash", "symbol": "DASH", "rank": 6, "price_usd": 7.7184, "24h_volume_usd": 744727, "market_cap_usd": 50320197, "available_supply": 6519511, "total_supply": 6519511, "percent_change_1h": 1.24, "percent_change_24h": -1.25, "percent_change_7d": 0.32 } -->
+
+				<div class="row">
+					<div class="col-lg-12">
+						<p>
+							&nbsp;
+						</p>
+
+						<div ng-controller="WithPromiseCtrl as showCase">
+						    <table datatable="" dt-options="showCase.dtOptions" dt-columns="showCase.dtColumns" dt-column-defs="showCase.dtColumnDefs" class="row-border hover" width="100%"></table>
+						</div>
+
+					</div>
+				</div>
+
+				<!-- <div class="row">
+					<div class="col-lg-12">
+						<code>data.length</code><br />
+						<pre>
+							{{data.length | json}}
+						</pre>
+					</div>
+				</div> -->
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Your Website 2014</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+		<!-- Scripts -->
+		<!--[if lt IE 9]>
+  	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+		<![endif]-->
+		<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+		<script src="js/datatables/media/js/jquery.dataTables.min.js"></script>
+		<script src="js/datatables/dataTables-responsive/js/dataTables.responsive.js"></script>		
+
+		<script src="https://code.angularjs.org/1.5.6/angular.js"></script>
+		<script src="https://code.angularjs.org/1.5.6/angular-resource.min.js"></script>
+
+		<script src="js/angular-datatables/dist/angular-datatables.min.js"></script>
+
+		<script src="js/app.js" charset="utf-8"></script>
+		<script src="js/promise.js" charset="utf-8"></script>
+
+	</body>
+</html>
