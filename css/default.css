@@ -1,3 +1,9 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700);
+
+table {
+  font-family: 'Roboto', sans-serif;
+}
+
 .currency-logo {
     margin-right: 5px;
     margin-top: -4px;
@@ -20,3 +26,11 @@ table.dataTable thead td, table.dataTable thead th {
 .font-bold {
   font-weight: bold;
 }
+
+img.sparkline {
+    border: thin solid #d0d0d0;
+    width: 166px;
+    height: 50px;
+}
+
+.no-wrap{white-space:nowrap}
