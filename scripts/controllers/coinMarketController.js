@@ -140,7 +140,7 @@
       // function test() { return console.log('test'); };
 
       function imgCellLabel(data, type, full, meta) {
-        var path = full['name_image/_source'].replace("img/coins", "icons");
+        var path = full['name_image/_source'];
         return '<img src=".'+ path +'" alt="' + full['name_image/_alt'] + '-logo" class="currency-logo"/>' + ' ' + data ;
       };
 
