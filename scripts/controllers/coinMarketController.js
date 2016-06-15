@@ -2,8 +2,10 @@
   'use strict';
   angular.module('myApp.controllers')
   .controller('coinMarketController', [
-    '$scope','$resource', '$filter', 'DTOptionsBuilder', 'DTColumnBuilder', 'coinMarketFactory',
-    function($scope, $resource, $filter, DTOptionsBuilder, DTColumnBuilder, coinMarketFactory) {
+    '$scope','$resource', '$filter', '$timeout',
+    'DTOptionsBuilder', 'DTColumnBuilder', 'coinMarketFactory',
+    function($scope, $resource, $filter, $timeout,
+      DTOptionsBuilder, DTColumnBuilder, coinMarketFactory) {
 
       console.log('coinMarketController');
 
@@ -16,17 +18,34 @@
       $scope.globalData = setGlobalData();
 
       $scope.$watch('globalData', function() {
-        alert('hey, myVar has changed!');
+        //alert('hey, myVar has changed!');
       });
 
       var vm = this;
-      vm.authorized = false;
 
+
+
+      // vm.dtInstanceCallback = function(_dtInstance) {
+      //   vm.dtInstance = _dtInstance;
+      //   vm.dtInstance.reloadData(); //or something else....
+      // };
+
+      // vm.nextPage = function nextPage() {
+      //     console.info('nextPage');
+      //     vm.dtInstance.page('next').draw('page');
+      // };
+
+      // You need to use $timeout as a "hack" to be sure that after the digest loop
+      // is performed, vm.dtInstance is set with the correct value.
+      /*$timeout(function() {
+          vm.dtInstance.on('page.dt', function() {
+              // Do your stuff
+          });
+      }, 0);*/
+      vm.authorized = false;
       vm.dtInstance = {};
-      vm.dtInstanceCallback = function(_dtInstance) {
-        vm.dtInstance = _dtInstance;
-        vm.dtInstance.reloadData(); //or something else....
-      };
+
+
 
       vm.dtOptions = DTOptionsBuilder.fromFnPromise(function(){
         return coinMarketFactory.getPage($scope.pageNumber);
@@ -48,6 +67,30 @@
         DTColumnBuilder.newColumn('pricegraph7d_image').withTitle('Price Graph (7d)').renderWith(imgCellGraph).withClass('no-wrap').notSortable(),
       ];
 
+      vm.newPromise = newPromise;
+      vm.reloadData = reloadData;
+      vm.nextPage = nextPage;
+      vm.dtInstance = {};
+      function newPromise() {
+        console.info('vm -> newPromise');
+        return coinMarketFactory.getPage($scope.pageNumber+1);//$resource(coinMarketFactory.getPage($scope.pageNumber+1)).query().$promise;
+      }
+
+      function reloadData() {
+        console.info('vm -> reloadData');
+          var resetPaging = true;
+          vm.dtInstance.reloadData(callback, resetPaging);
+      }
+
+      function callback(json) {
+        console.info('vm -> callback');
+          console.log(json);
+      }
+
+      function nextPage () {
+        vm.dtInstance.changeData(coinMarketFactory.getPage($scope.pageNumber+1));
+        vm.dtInstance.rerender();
+      }
 
       // -------------------------------------------------
       function setTempNode() {
@@ -88,12 +131,13 @@
 
       function setGlobalData(){ return coinMarketFactory.getGlobalData; };
 
-      function reloadData() {
-        var resetPaging = false;
-        vm.dtInstance.reloadData(callback, resetPaging);
-      };
+      // function reloadData() {
+      //   var resetPaging = false;
+      //   vm.dtInstance.reloadData(callback, resetPaging);
+      // };
 
-      function callback(json) { console.log(json); };
+      // function callback(json) { console.log(json); };
+      // function test() { return console.log('test'); };
 
       function imgCellLabel(data, type, full, meta) {
         var path = full['name_image/_source'].replace("img/coins", "icons");
