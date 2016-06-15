@@ -56,15 +56,58 @@ table.dataTable thead td, table.dataTable thead th {
     border-bottom: 1px solid #ffcb7f;
 }
 
+table.dataTable {
+    border: solid thin #dddddd;
+}
+
 .font-bold {
   font-weight: bold;
 }
+table.dataTable.stripe tbody tr.odd,
+table.dataTable.display tbody tr.odd {
+    background-color: #fbfbfb;
+}
 
 img.sparkline {
-    border: thin solid #d0d0d0;
-    width: 166px;
-    height: 50px;
+  border: 1px dotted #ffd8ae;
+  border-top: 0;
+  width: 90%;
+  height: 40px;
+  -webkit-filter: hue-rotate(190deg);
+  filter: hue-rotate(190deg);
+  border-right: 0;
+  mix-blend-mode: multiply;
 }
 
 .no-wrap{white-space:nowrap}
 
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
+  display: none !important;
+}
+.fade-ng-cloak {
+  opacity: 1;
+  -ms-filter: none;
+  -webkit-filter: none;
+          filter: none;
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+}
+.fade-ng-cloak[ng-cloak] {
+  display: block !important;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+}
+.fade-ng-cloak.ng-cloak,
+.fade-ng-cloak.ng-binding {
+    opacity: 0;
+    transition: opacity 800ms ease-in-out;
+}
+.fade-ng-cloak.ng-binding {
+    opacity: 1;
+}

@@ -20,7 +20,7 @@
 		<title>ILCoin - table v.1.0.2</title>
 
 	</head>
-	<body ng-app="showCase">
+	<body ng-app="myApp">
 		<!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -59,13 +59,13 @@
     <div class="container">
 
         <!-- Heading Row -->
-        <div class="row">
+        <div class="row" ng-controller="GlobalVarController" >
             <div class="col-md-8">
                 <img class="img-responsive img-rounded" src="http://placehold.it/900x350" alt="">
             </div>
             <!-- /.col-md-8 -->
             <div class="col-md-4">
-                <h1>CryptoCurrencies</h1>
+                <h1>{{config.APP_NAME}} <lead>v{{config.APP_VERSION}}</lead></h1>
                 <p>This is a template that is great for small businesses. It doesn't have too much fancy flare to it, but it makes a great use of the standard Bootstrap core components. Feel free to use this template for any project you want!</p>
                 <a class="btn btn-primary btn-lg" href="#">Call to Action!</a>
             </div>
@@ -73,10 +73,10 @@
         </div>
         <!-- /.row -->
 
-        <hr>
+        <hr  ng-if="!config.DEBUG">
 
         <!-- Call to Action Well -->
-        <div class="row">
+        <div class="row"  ng-if="!config.DEBUG">
             <div class="col-lg-12">
                 <div class="well text-center">
                     This is a well that is a great spot for a business tagline or phone number for easy access!
@@ -87,7 +87,7 @@
         <!-- /.row -->
 
         <!-- Content Row -->
-        <div class="row">
+        <div class="row"  ng-if="!config.DEBUG">
             <div class="col-md-4">
                 <h2>Heading 1</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe rem nisi accusamus error velit animi non ipsa placeat. Recusandae, suscipit, soluta quibusdam accusamus a veniam quaerat eveniet eligendi dolor consectetur.</p>
@@ -111,14 +111,18 @@
 
 				<!-- { "id": "dash", "name": "Dash", "symbol": "DASH", "rank": 6, "price_usd": 7.7184, "24h_volume_usd": 744727, "market_cap_usd": 50320197, "available_supply": 6519511, "total_supply": 6519511, "percent_change_1h": 1.24, "percent_change_24h": -1.25, "percent_change_7d": 0.32 } -->
 
-				<div class="row">
+				<div class="row" >
 					<div class="col-lg-12">
-						<p>
-							&nbsp;
-						</p>
-
-						<div ng-controller="WithPromiseCtrl as showCase">
-						    <table datatable="" dt-options="showCase.dtOptions" dt-columns="showCase.dtColumns" dt-column-defs="showCase.dtColumnDefs" class="row-border hover" width="100%"></table>
+						<div class="btn-group" role="group" aria-label="...">
+							<button type="button" class="btn btn-default" ng-click="dtInstance.changeData(backPagePath)">reloadData</button>
+							<button type="button" class="btn btn-default" ng-click="dtInstance.changeData(nextPagePath)">Next 100</button>
+						</div>
+						<div ng-controller="coinMarketController as vm">
+							<table datatable=""
+								dt-options="vm.dtOptions"
+								dt-columns="vm.dtColumns"
+								dt-instance="vm.dtInstanceCallback"
+								class="row-border hover order-column stripe" width="100%"></table>
 						</div>
 
 					</div>
@@ -145,23 +149,23 @@
     </div>
     <!-- /.container -->
 
-		<!-- Scripts -->
-		<!--[if lt IE 9]>
-  	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-		<![endif]-->
 		<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 		<script src="js/datatables/media/js/jquery.dataTables.min.js"></script>
-		<script src="js/datatables/dataTables-responsive/js/dataTables.responsive.js"></script>		
+		<script src="js/datatables/dataTables-responsive/js/dataTables.responsive.js"></script>
 
 		<script src="https://code.angularjs.org/1.5.6/angular.js"></script>
 		<script src="https://code.angularjs.org/1.5.6/angular-resource.min.js"></script>
 
 		<script src="js/angular-datatables/dist/angular-datatables.min.js"></script>
 
-		<script src="js/app.js" charset="utf-8"></script>
-		<script src="js/promise.js" charset="utf-8"></script>
+		<script src="scripts/app.js" ></script>
+		<script src="scripts/controllers/main.js" ></script>
+		<script src="scripts/controllers/globalVarController.js" ></script>
+		<script src="scripts/controllers/coinMarketController.js" ></script>
+		<script src="scripts/services/main.js" ></script>
+		<script src="scripts/services/coinMarketFactory.js" ></script>
 
 	</body>
 </html>
