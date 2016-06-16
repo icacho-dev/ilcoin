@@ -3,55 +3,51 @@
   angular.module('myApp.controllers')
   .controller('coinMarketController', [
     '$scope','$resource', '$filter', '$timeout',
-    'DTOptionsBuilder', 'DTColumnBuilder', 'coinMarketFactory',
+    'DTOptionsBuilder', 'DTColumnBuilder', 'coinMarketFactory','dataService',
     function($scope, $resource, $filter, $timeout,
-      DTOptionsBuilder, DTColumnBuilder, coinMarketFactory) {
+      DTOptionsBuilder, DTColumnBuilder, coinMarketFactory, dataService) {
 
       console.log('coinMarketController');
 
+      $scope.status;
       $scope.ilcoinTmp;
       $scope.ilcoinTmpIndex;
       $scope.ilcoinTmpParams = setTempNode();
       $scope.pageNumber = 1;
       $scope.pageLength = 100;
       $scope.totalEl = 100;
-      $scope.globalData = setGlobalData();
 
-      $scope.$watch('globalData', function() {
-        //alert('hey, myVar has changed!');
-      });
+      $scope.globalData = dataService.globalData($scope.config['GLOBALS_URL']);
+      //$scope.globalData = setGlobalData();
+
+      // getGlobalData();
+      //
+      // function getGlobalData() {
+      //   dataFactory.getGlobalData($scope.config['GLOBALS_URL'])
+      //    .then(function (response) {
+      //        $scope.globalData = response.data;
+      //        console.log('globalData',$scope.globalData);
+      //    }, function (error) {
+      //        $scope.status = 'Unable to load customer data: ' + error.message;
+      //    });
+      // }
+
+
+      // $scope.$watch('globalData', function() {
+      //   alert('hey, myVar has changed!');
+      // });
 
       var vm = this;
-
-
-
-      // vm.dtInstanceCallback = function(_dtInstance) {
-      //   vm.dtInstance = _dtInstance;
-      //   vm.dtInstance.reloadData(); //or something else....
-      // };
-
-      // vm.nextPage = function nextPage() {
-      //     console.info('nextPage');
-      //     vm.dtInstance.page('next').draw('page');
-      // };
-
-      // You need to use $timeout as a "hack" to be sure that after the digest loop
-      // is performed, vm.dtInstance is set with the correct value.
-      /*$timeout(function() {
-          vm.dtInstance.on('page.dt', function() {
-              // Do your stuff
-          });
-      }, 0);*/
       vm.authorized = false;
       vm.dtInstance = {};
-
-
-
-      vm.dtOptions = DTOptionsBuilder.fromFnPromise(function(){
-        return coinMarketFactory.getPage($scope.pageNumber);
-      }).withOption('responsive', true)
-      // .withPaginationType('full_numbers')
-      .withOption('sDom', '<"toolbar">rt<"bottom"i><"clear">')
+      vm.dtOptions = DTOptionsBuilder.fromFnPromise(
+        dataService.firstDataSet(
+          $scope.config['GLOBALS_URLPRE'] +
+          $scope.pageNumber.toString() +
+          $scope.config['GLOBALS_URLPOS'])
+      )
+      .withOption('responsive', true)
+      .withOption('sDom', '<"toolbar">rit<"bottom"><"clear">')
       .withOption('pageLength', $scope.pageLength)
       .withOption('authorized', true)
       ;
@@ -74,23 +70,23 @@
       function newPromise() {
         console.info('vm -> newPromise');
         return coinMarketFactory.getPage($scope.pageNumber+1);//$resource(coinMarketFactory.getPage($scope.pageNumber+1)).query().$promise;
-      }
+      };
 
       function reloadData() {
         console.info('vm -> reloadData');
           var resetPaging = true;
           vm.dtInstance.reloadData(callback, resetPaging);
-      }
+      };
 
       function callback(json) {
         console.info('vm -> callback');
           console.log(json);
-      }
+      };
 
       function nextPage () {
         vm.dtInstance.changeData(coinMarketFactory.getPage($scope.pageNumber+1));
         vm.dtInstance.rerender();
-      }
+      };
 
       // -------------------------------------------------
       function setTempNode() {
@@ -127,9 +123,12 @@
         console.log('coinMarketFactory.setTmpNode->');
         coinMarketFactory.setTmpNode([$scope.ilcoinTmpIndex,$scope.ilcoinTmp]);
         return coinMarketFactory.getTmpNode;
-      }
+      };
 
-      function setGlobalData(){ return coinMarketFactory.getGlobalData; };
+      function setGlobalData (){
+        console.log('[00] getGlobalData');
+        return coinMarketFactory.getGlobalData;
+      };
 
       // function reloadData() {
       //   var resetPaging = false;

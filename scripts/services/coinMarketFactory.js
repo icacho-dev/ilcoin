@@ -2,24 +2,24 @@
   'use strict';
   angular.module('myApp.services')
   .factory('coinMarketFactory', ['$http', '$q', function($http, $q) {
-
+    var path = ''
     var params = [];
     return {
       getTmpNode : function () {
               return params;
       },
       setTmpNode:function(value){
-          params.push(value);
           console.log('setTmpNode',params);
-          return params;
+          return params.push(value);
       },
       getGlobalData: function() {
+        console.log('[-] getGlobalData');
         var path = 'https://api.coinmarketcap.com/v1/global/';
-
         return $http.get(path)
         .then(function(response) {
+          console.log('[0] getGlobalData',response);
           if (typeof response.data === 'object') {
-            console.log('getGlobalData -> ', response.data);
+            console.log('[1] getGlobalData -> ', response.data);
             return response.data;
           } else {
             console.log('invalid response');
@@ -53,5 +53,78 @@
       }
     };
 
-  }]);
+  }])
+  .factory('dataFactory', ['$http', function($http) {
+
+    var dataFactory = {};
+
+    dataFactory.getGlobalData = function (url) {
+      return $http.get(url);
+    };
+
+    dataFactory.getFirstDataSet = function (url) {
+      return $http.get(url).then(function(response) {
+        if (typeof response.data === 'object') {
+          //response.data.results.splice(params[0][0],1,params[0][1]);
+          return response.data.results;
+        } else {
+          return $q.reject(response.data);
+        }
+      }, function(response) {
+        return $q.reject(response.data);
+      });;
+    };
+
+    // dataFactory.getCustomer = function (id) {
+    //   return $http.get(urlBase + '/' + id);
+    // };
+    //
+    // dataFactory.insertCustomer = function (cust) {
+    //   return $http.post(urlBase, cust);
+    // };
+    //
+    // dataFactory.updateCustomer = function (cust) {
+    //   return $http.put(urlBase + '/' + cust.ID, cust)
+    // };
+    //
+    // dataFactory.deleteCustomer = function (id) {
+    //   return $http.delete(urlBase + '/' + id);
+    // };
+    //
+    // dataFactory.getOrders = function (id) {
+    //   return $http.get(urlBase + '/' + id + '/orders');
+    // };
+
+      return dataFactory;
+   }])
+   .service('dataService', function (dataFactory) {
+
+        this.globalData = function(gulr) {
+               return dataFactory.getGlobalData(gulr);
+        }
+
+        this.firstDataSet = function(gulr) {
+               return dataFactory.getFirstDataSet(gulr);
+        }
+
+        // this.getCustomer = function (id) {
+        //     return $http.get(urlBase + '/' + id);
+        // };
+        //
+        // this.insertCustomer = function (cust) {
+        //     return $http.post(urlBase, cust);
+        // };
+        //
+        // this.updateCustomer = function (cust) {
+        //     return $http.put(urlBase + '/' + cust.ID, cust)
+        // };
+        //
+        // this.deleteCustomer = function (id) {
+        //     return $http.delete(urlBase + '/' + id);
+        // };
+        //
+        // this.getOrders = function (id) {
+        //     return $http.get(urlBase + '/' + id + '/orders');
+        // };
+    });
 })(window.angular);
