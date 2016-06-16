@@ -63,9 +63,9 @@
     };
 
     dataFactory.getFirstDataSet = function (url) {
+
       return $http.get(url).then(function(response) {
         if (typeof response.data === 'object') {
-          //response.data.results.splice(params[0][0],1,params[0][1]);
           return response.data.results;
         } else {
           return $q.reject(response.data);
@@ -75,9 +75,18 @@
       });
     };
 
-    // dataFactory.getCustomer = function (id) {
-    //   return $http.get(urlBase + '/' + id);
-    // };
+    dataFactory.getPageDataSet = function (page) {
+      console.log('fac:getPageDataSet ->',page);
+      return $http.get('https://api.import.io/store/connector/6cc86d93-9a64-4068-b9e2-8dc6c3239bfe/_query?input=webpage/url:http%3A%2F%2Fcoinmarketcap.com%2Fall%2F'+page+      '&&_apikey=1ecdbfaa5b6a4e99b4ac28e155faad363521bf2ee092218e5230734bd9af72c0a58ff2dcaeeefaf76b86d608e507439d2c4a387961de01947a6c9592f4d19bb23b47c25d666d1541bd6e7f892d7ac2c1').then(function(response) {
+        if (typeof response.data === 'object') {
+          return response.data.results;
+        } else {
+          return $q.reject(response.data);
+        }
+      }, function(response) {
+        return $q.reject(response.data);
+      });
+    };
     //
     // dataFactory.insertCustomer = function (cust) {
     //   return $http.post(urlBase, cust);
@@ -107,6 +116,35 @@
                return dataFactory.getFirstDataSet(gulr);
         }
 
+        this.pageDataSet = function(page) {
+          console.log('serv:getPageDataSet ->',page);
+          return dataFactory.getPageDataSet(page);
+        }
+
+        this.allData = function(data) {
+
+            // var active_assets = data.active_assets;
+            // var active_currencies = data.active_currencies;
+            // var length = active_assets + active_currencies;
+            // var lPage = Math.ceil(length/100);
+            //
+            // var defer = $q.defer();
+            // var promises = [];
+            //
+            // angular.forEach(resources, function(value) {
+            //     promises.push(MyApi.details(resources[i].key));
+            // });
+            // for (var i=1; i<lPage; i++) {
+            //   promises.push(i);
+            // }
+            //
+            // $q.all(promises).then(function() {
+            //     $scope.total = $scope.results.reduce(function(a, b) { return a + b; }, 0);
+            // })
+            //
+            // console.log('allData');
+            return dataFactory.getAllDataSet(data);
+        }
         // this.getCustomer = function (id) {
         //     return $http.get(urlBase + '/' + id);
         // };

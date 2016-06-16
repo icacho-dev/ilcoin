@@ -2,9 +2,9 @@
   'use strict';
   angular.module('myApp.controllers')
   .controller('coinMarketController', [
-    '$scope','$resource', '$filter', '$timeout',
+    '$scope','$resource', '$filter', '$timeout','$q',
     'DTOptionsBuilder', 'DTColumnBuilder', 'coinMarketFactory','dataService',
-    function($scope, $resource, $filter, $timeout,
+    function($scope, $resource, $filter, $timeout, $q,
       DTOptionsBuilder, DTColumnBuilder, coinMarketFactory, dataService) {
 
       console.log('coinMarketController');
@@ -21,23 +21,44 @@
       // });
       var vm = this;
       vm.authorized = false;
+
       $scope.globalData = dataService.globalData($scope.config['GLOBALS_URL'])
       .then(function(response){
+        console.info('globalData',response);
         vm.globalData = response.data;
       });
+
       vm.dtInstance = {};
       vm.dtOptions = DTOptionsBuilder.fromFnPromise(
-        dataService.firstDataSet(
-          $scope.config['GLOBALS_URLPRE'] +
-          $scope.pageNumber.toString() +
-          $scope.config['GLOBALS_URLPOS'])
+
+        $q.all([
+            dataService.globalData($scope.config['GLOBALS_URL'])
+          ]).then(function(data){
+            var d = data[0].data;
+            var active_assets = d.active_assets;
+            var active_currencies = d.active_currencies;
+            var length = active_assets + active_currencies;
+            var lPage = Math.ceil(length/100);
+
+            var promises = [];
+            for (var i = 0; i < lPage; i = i + 1) {
+                promises.push(dataService.pageDataSet(i));
+            };
+            $q.all(promises)
+            // .then(function(response) {
+            //     for (var i = 1; i < response.length; i++) {
+            //          $scope.allData.push({
+            //              id: response[i].data.id,
+            //              value: response[i].data.length
+            //          });
+            //     }
+            // })
+          })
       )
       .withOption('responsive', true)
-      // .withOption('sDom', '<"toolbar"i>rt<"bottom"><"clear">')
       .withOption('pageLength', $scope.pageLength)
       .withPaginationType('full_numbers')
-      .withOption('authorized', true)
-      ;
+      .withOption('authorized', true);
 
       vm.dtColumns = [
         DTColumnBuilder.newColumn('number/_source').withTitle('#'),
