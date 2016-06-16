@@ -10,7 +10,7 @@
 		// const DB_PASSWORD = "";
 		// const DB = "c01n34rk_db";
 
-    const DB_SERVER = "localhost";
+    const DB_SERVER = "ip-50-63-66-31.ip.secureserver.net";
 		const DB_USER = "c01n34rk_usr";
 		const DB_PASSWORD = "dT*Vh;PzmfoR";
 		const DB = "c01n34rk_db";
