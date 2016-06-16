@@ -117,7 +117,7 @@
         }
 
         this.pageDataSet = function(page) {
-          console.log('serv:getPageDataSet ->',page);
+          console.log('ser:getPageDataSet ->',page);
           return dataFactory.getPageDataSet(page);
         }
 
@@ -143,7 +143,7 @@
             // })
             //
             // console.log('allData');
-            return dataFactory.getAllDataSet(data);
+            return dataFactory.getPageDataSet(data);
         }
         // this.getCustomer = function (id) {
         //     return $http.get(urlBase + '/' + id);

@@ -15,47 +15,30 @@
       $scope.ilcoinTmpParams = setTempNode();
       $scope.pageNumber = 1;
       $scope.pageLength = 100;
-      $scope.totalEl = 100;
-      // $scope.$watch('globalData', function() {
-      //   alert('hey, myVar has changed!');
-      // });
+      $scope.totalEl;
+      $scope.globalData;
+
       var vm = this;
       vm.authorized = false;
-
-      $scope.globalData = dataService.globalData($scope.config['GLOBALS_URL'])
+      vm.globalData = dataService.globalData($scope.config['GLOBALS_URL'])
       .then(function(response){
-        console.info('globalData',response);
-        vm.globalData = response.data;
+         $scope.globalData = response.data;
       });
+
+      $scope.$watch('vm.globalData', function() {
+        console.log('vm.globalData',vm.globalData);
+      });
+      var getTableData = function() {
+          var deferred = $q.defer();
+          deferred.resolve(dataService.allData(1)); 
+          return deferred.promise;
+      };
 
       vm.dtInstance = {};
       vm.dtOptions = DTOptionsBuilder.fromFnPromise(
-
-        $q.all([
-            dataService.globalData($scope.config['GLOBALS_URL'])
-          ]).then(function(data){
-            var d = data[0].data;
-            var active_assets = d.active_assets;
-            var active_currencies = d.active_currencies;
-            var length = active_assets + active_currencies;
-            var lPage = Math.ceil(length/100);
-
-            var promises = [];
-            for (var i = 0; i < lPage; i = i + 1) {
-                promises.push(dataService.pageDataSet(i));
-            };
-            $q.all(promises)
-            // .then(function(response) {
-            //     for (var i = 1; i < response.length; i++) {
-            //          $scope.allData.push({
-            //              id: response[i].data.id,
-            //              value: response[i].data.length
-            //          });
-            //     }
-            // })
-          })
+        getTableData()
       )
-      .withOption('responsive', true)
+      // vm.dtOptions = DTOptionsBuilder.newOptions()
       .withOption('pageLength', $scope.pageLength)
       .withPaginationType('full_numbers')
       .withOption('authorized', true);
