@@ -1,4 +1,5 @@
 var app = angular.module('myApp', ['ngRoute']);
+
 app.factory("services", ['$http', function($http) {
   var serviceBase = 'services/'
     var obj = {};
@@ -90,6 +91,7 @@ app.config(['$routeProvider',
         redirectTo: '/'
       });
 }]);
+
 app.run(['$location', '$rootScope', function($location, $rootScope) {
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
         $rootScope.title = current.$$route.title;

@@ -10,7 +10,7 @@
 		// const DB_PASSWORD = "";
 		// const DB = "c01n34rk_db";
 
-    const DB_SERVER = "127.0.0.1";
+    const DB_SERVER = "50.63.66.31";
 		const DB_USER = "c01n34rk_usr";
 		const DB_PASSWORD = "dT*Vh;PzmfoR";
 		const DB = "c01n34rk_db";
@@ -26,7 +26,7 @@
 		 *  Connect to Database
 		*/
 		private function dbConnect(){
-			$this->mysqli = new mysqli(self::DB_SERVER, self::DB_USER, self::DB_PASSWORD, self::DB);
+			$this->mysqli = new mysqli("50.63.66.31", "c01n34rk_usr", "dT*Vh;PzmfoR", "c01n34rk_db", 3306);
 		}
 
 		/*
