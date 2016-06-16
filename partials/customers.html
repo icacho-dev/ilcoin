@@ -1,0 +1,34 @@
+ <div class="row">
+    <div class="col-md-12" ng-show="customers.length > 0">
+
+    <nav class= "navbar navbar-default" role= "navigation" >
+    <div class= "navbar-header" >
+    <a class="btn btn-lg btn-success" href="#/edit-customer/0"><i class="glyphicon glyphicon-plus"></i>&nbsp;Add new Entity</a>
+    </div>
+    </nav>
+        <table class="table table-striped table-bordered">
+        <thead>
+          <th>market cap price currency&nbsp;</th>
+          <th>available link numbers source&nbsp;</th>
+          <th>market cap price source&nbsp;</th>
+          <th>number&nbsp;</th>
+          <th>name link text&nbsp;</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="data in customers">
+              <td>{{data.marketcap_price_currency}}</td>
+              <td>{{data.available_link_numbers_source}}</td>
+              <td>{{data.marketcap_price_source}}</td>
+              <td>{{data.number}}</td>
+              <td>{{data.name_link_text}}</td>
+                <td><a href="#/edit-customer/{{data.pk}}" class="btn">&nbsp;<i class="glyphicon glyphicon-edit"></i>&nbsp; Edit Entity</a></td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+    <div class="col-md-12" ng-show="customers.length == 0">
+        <div class="col-md-12">
+            <h4>No Entitys found</h4>
+        </div>
+    </div>
+</div>

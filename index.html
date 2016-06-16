@@ -56,10 +56,10 @@
     </nav>
 
     <!-- Page Content -->
-    <div class="container" ng-controller="GlobalVarController">
+    <div class="container">
 
         <!-- Heading Row -->
-        <div class="row" ng-if="!config.DEBUG">
+        <div class="row" ng-controller="GlobalVarController" >
             <div class="col-md-8">
                 <img class="img-responsive img-rounded" src="http://placehold.it/900x350" alt="">
             </div>
@@ -114,21 +114,17 @@
 				<div class="row" >
 					<div class="col-lg-12">
 						<div ng-controller="coinMarketController as vm">
-							<pre>
-								globalData: {{ vm.globalData | json }}
-							</pre>
-
-							<div class="btn-group" role="group" aria-label="...">								
+							<div class="btn-group" role="group" aria-label="...">
+								<!-- <button type="button" class="btn btn-default" ng-click="dtInstance.changeData(backPagePath)">reloadData</button>
+								<button type="button" class="btn btn-default" ng-click="dtInstance.changeData(nextPagePath)">Next 100</button> -->
 								<button type="button" class="btn btn-default" ng-click="vm.reloadData()">Refresh</button>
-								<button type="button" class="btn btn-default" ng-click="vm.prevPage()">Previous 100</button>
 								<button type="button" class="btn btn-default" ng-click="vm.nextPage()">Next 100</button>
 							</div>
-
 							<table datatable=""
 								dt-options="vm.dtOptions"
 								dt-columns="vm.dtColumns"
 								dt-instance="vm.dtInstance"
-								class="row-border hover order-column stripe" width="100%" id="dtTable"></table>
+								class="row-border hover order-column stripe" width="100%"></table>
 						</div>
 
 					</div>
