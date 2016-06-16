@@ -72,7 +72,7 @@
         }
       }, function(response) {
         return $q.reject(response.data);
-      });;
+      });
     };
 
     // dataFactory.getCustomer = function (id) {

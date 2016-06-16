@@ -9,5 +9,8 @@
   ])
   .config(['$compileProvider', function ($compileProvider) {
     $compileProvider.debugInfoEnabled(true);
-  }]);
+  }])
+  .run(function(DTDefaultOptions) {
+    DTDefaultOptions.setDOM('ip');
+  });
 })(window.angular);

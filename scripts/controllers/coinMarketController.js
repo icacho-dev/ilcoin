@@ -16,29 +16,15 @@
       $scope.pageNumber = 1;
       $scope.pageLength = 100;
       $scope.totalEl = 100;
-
-      $scope.globalData = dataService.globalData($scope.config['GLOBALS_URL']);
-      //$scope.globalData = setGlobalData();
-
-      // getGlobalData();
-      //
-      // function getGlobalData() {
-      //   dataFactory.getGlobalData($scope.config['GLOBALS_URL'])
-      //    .then(function (response) {
-      //        $scope.globalData = response.data;
-      //        console.log('globalData',$scope.globalData);
-      //    }, function (error) {
-      //        $scope.status = 'Unable to load customer data: ' + error.message;
-      //    });
-      // }
-
-
       // $scope.$watch('globalData', function() {
       //   alert('hey, myVar has changed!');
       // });
-
       var vm = this;
       vm.authorized = false;
+      $scope.globalData = dataService.globalData($scope.config['GLOBALS_URL'])
+      .then(function(response){
+        vm.globalData = response.data;
+      });
       vm.dtInstance = {};
       vm.dtOptions = DTOptionsBuilder.fromFnPromise(
         dataService.firstDataSet(
@@ -47,8 +33,9 @@
           $scope.config['GLOBALS_URLPOS'])
       )
       .withOption('responsive', true)
-      .withOption('sDom', '<"toolbar">rit<"bottom"><"clear">')
+      // .withOption('sDom', '<"toolbar"i>rt<"bottom"><"clear">')
       .withOption('pageLength', $scope.pageLength)
+      .withPaginationType('full_numbers')
       .withOption('authorized', true)
       ;
 
