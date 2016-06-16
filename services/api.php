@@ -5,9 +5,14 @@
 
 		public $data = "";
 
-		const DB_SERVER = "localhost";
-		const DB_USER = "root";
-		const DB_PASSWORD = "";
+		// const DB_SERVER = "localhost";
+		// const DB_USER = "root";
+		// const DB_PASSWORD = "";
+		// const DB = "c01n34rk_db";
+
+    const DB_SERVER = "50.63.66.31";
+		const DB_USER = "c01n34rk_usr";
+		const DB_PASSWORD = "dT*Vh;PzmfoR";
 		const DB = "c01n34rk_db";
 
 		private $db = NULL;
