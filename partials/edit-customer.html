@@ -1,0 +1,68 @@
+﻿<style type="text/css">
+  .form-horizontal input.ng-invalid.ng-dirty {
+    border-color: #FA787E;
+  }
+
+  .form-horizontal input.ng-valid.ng-dirty {
+    border-color: #78FA89;
+  }
+</style>
+<div class="view">
+    <div class="container">
+        <div class="row">
+        <nav class= "navbar navbar-default" role= "navigation" >
+        <div class= "navbar-header" >
+          <a class= "navbar-brand" href= "#/customers"><i class="glyphicon glyphicon-th-large"></i> Entities List </a>
+        <a ng-show="customer._id" class= "navbar-brand" href= "#/edit-customer/0"><i class="glyphicon glyphicon-plus"></i> Create Entity </a>
+        <a ng-show="customer._id" class= "navbar-brand pull-right"><i class="glyphicon glyphicon-edit"></i> Currently Editing Entity Number: {{customer._id}}</a>
+        </div>
+        </nav>
+        <header>
+            <h3>{{title}}</h3>
+        </header>
+        <div class="col-md-12">
+
+<form role="form" name="myForm" class="form-horizontal">
+<div class="row">
+  <div class= "form-group" ng-class="{error: myForm.marketcap_price_currency.$invalid}"><label class= "col-md-2"> marketcap price currency </label><div class="col-md-4"><input name="marketcap_price_currency" ng-model="customer.marketcap_price_currency" type= "text" class= "form-control" placeholder="marketcap price currency" required/><span ng-show="myForm.marketcap_price_currency.$dirty && myForm.marketcap_price_currency.$invalid" class="help-inline">Field Required</span></div></div>
+  <div class= "form-group" ng-class="{error: myForm.available_link_numbers_source.$invalid}"><label class= "col-md-2"> available link numbers source </label><div class="col-md-4"><input name="available_link_numbers_source" ng-model="customer.available_link_numbers_source" type= "text" class= "form-control" placeholder="available link numbers source" required/><span ng-show="myForm.available_link_numbers_source.$dirty && myForm.available_link_numbers_source.$invalid" class="help-inline">Field Required</span></div></div>
+  <div class= "form-group" ng-class="{error: myForm.marketcap_price_source.$invalid}"><label class= "col-md-2"> marketcap price source </label><div class="col-md-4"><input name="marketcap_price_source" ng-model="customer.marketcap_price_source" type= "text" class= "form-control" placeholder="marketcap price source" required/><span ng-show="myForm.marketcap_price_source.$dirty && myForm.marketcap_price_source.$invalid" class="help-inline">Field Required</span></div></div>
+  <div class= "form-group" ng-class="{error: myForm.number.$invalid}"><label class= "col-md-2"> number </label><div class="col-md-4"><input name="number" ng-model="customer.number" type= "text" class= "form-control" placeholder="number" required/><span ng-show="myForm.number.$dirty && myForm.number.$invalid" class="help-inline">Field Required</span></div></div>
+  <div class= "form-group" ng-class="{error: myForm.name_link_text.$invalid}"><label class= "col-md-2"> name link text </label><div class="col-md-4"><input name="name_link_text" ng-model="customer.name_link_text" type= "text" class= "form-control" placeholder="name link text" required/><span ng-show="myForm.name_link_text.$dirty && myForm.name_link_text.$invalid" class="help-inline">Field Required</span></div></div>
+  <div class= "form-group" ng-class="{error: myForm.name_link_source.$invalid}"><label class= "col-md-2"> name link source </label><div class="col-md-4"><input name="name_link_source" ng-model="customer.name_link_source" type= "text" class= "form-control" placeholder="name link source" required/><span ng-show="myForm.name_link_source.$dirty && myForm.name_link_source.$invalid" class="help-inline">Field Required</span></div></div>
+  <div class= "form-group" ng-class="{error: myForm.numbe_source.$invalid}"><label class= "col-md-2"> numbe source </label><div class="col-md-4"><input name="numbe_source" ng-model="customer.numbe_source" type= "text" class= "form-control" placeholder="numbe source" required/><span ng-show="myForm.numbe_source.$dirty && myForm.numbe_source.$invalid" class="help-inline">Field Required</span></div></div>
+  <div class= "form-group" ng-class="{error: myForm.price_link_source.$invalid}"><label class= "col-md-2"> price link source </label><div class="col-md-4"><input name="price_link_source" ng-model="customer.price_link_source" type= "text" class= "form-control" placeholder="price link source" required/><span ng-show="myForm.price_link_source.$dirty && myForm.price_link_source.$invalid" class="help-inline">Field Required</span></div></div>
+  <div class= "form-group" ng-class="{error: myForm.available_link.$invalid}"><label class= "col-md-2"> available link </label><div class="col-md-4"><input name="available_link" ng-model="customer.available_link" type= "text" class= "form-control" placeholder="available link" required/><span ng-show="myForm.available_link.$dirty && myForm.available_link.$invalid" class="help-inline">Field Required</span></div></div>
+  <div class= "form-group" ng-class="{error: myForm.name_image_source.$invalid}"><label class= "col-md-2"> name image source </label><div class="col-md-4"><input name="name_image_source" ng-model="customer.name_image_source" type= "text" class= "form-control" placeholder="name image source" required/><span ng-show="myForm.name_image_source.$dirty && myForm.name_image_source.$invalid" class="help-inline">Field Required</span></div></div>
+  <div class= "form-group" ng-class="{error: myForm.price_link_text.$invalid}"><label class= "col-md-2"> price link text </label><div class="col-md-4"><input name="price_link_text" ng-model="customer.price_link_text" type= "text" class= "form-control" placeholder="price link text" required/><span ng-show="myForm.price_link_text.$dirty && myForm.price_link_text.$invalid" class="help-inline">Field Required</span></div></div>
+  <div class= "form-group" ng-class="{error: myForm.pricegraph7d_link_source.$invalid}"><label class= "col-md-2"> price graph 7d link source </label><div class="col-md-4"><input name="pricegraph7d_link_source" ng-model="customer.pricegraph7d_link_source" type= "text" class= "form-control" placeholder="price graph 7d link source" required/><span ng-show="myForm.pricegraph7d_link_source.$dirty && myForm.pricegraph7d_link_source.$invalid" class="help-inline">Field Required</span></div></div>
+  <div class= "form-group" ng-class="{error: myForm.available_link_text.$invalid}"><label class= "col-md-2"> available link text </label><div class="col-md-4"><input name="available_link_text" ng-model="customer.available_link_text" type= "text" class= "form-control" placeholder="available link text" required/><span ng-show="myForm.available_link_text.$dirty && myForm.available_link_text.$invalid" class="help-inline">Field Required</span></div></div>
+  <div class= "form-group" ng-class="{error: myForm.volume24h_link.$invalid}"><label class= "col-md-2"> volume 24h link </label><div class="col-md-4"><input name="volume24h_link" ng-model="customer.volume24h_link" type= "text" class= "form-control" placeholder="volume 24h link" required/><span ng-show="myForm.volume24h_link.$dirty && myForm.volume24h_link.$invalid" class="help-inline">Field Required</span></div></div>
+  <div class= "form-group" ng-class="{error: myForm.name_link.$invalid}"><label class= "col-md-2"> name link </label><div class="col-md-4"><input name="name_link" ng-model="customer.name_link" type= "text" class= "form-control" placeholder="name link" required/><span ng-show="myForm.name_link.$dirty && myForm.name_link.$invalid" class="help-inline">Field Required</span></div></div>
+  <div class= "form-group" ng-class="{error: myForm.name_image.$invalid}"><label class= "col-md-2"> name image </label><div class="col-md-4"><input name="name_image" ng-model="customer.name_image" type= "text" class= "form-control" placeholder="name image" required/><span ng-show="myForm.name_image.$dirty && myForm.name_image.$invalid" class="help-inline">Field Required</span></div></div>
+  <div class= "form-group" ng-class="{error: myForm.marketcap_price.$invalid}"><label class= "col-md-2"> market cap. price </label><div class="col-md-4"><input name="marketcap_price" ng-model="customer.marketcap_price" type= "text" class= "form-control" placeholder="market cap. price" required/><span ng-show="myForm.marketcap_price.$dirty && myForm.marketcap_price.$invalid" class="help-inline">Field Required</span></div></div>
+  <div class= "form-group" ng-class="{error: myForm.name_image_alt.$invalid}"><label class= "col-md-2"> name image alt </label><div class="col-md-4"><input name="name_image_alt" ng-model="customer.name_image_alt" type= "text" class= "form-control" placeholder="name image alt" required/><span ng-show="myForm.name_image_alt.$dirty && myForm.name_image_alt.$invalid" class="help-inline">Field Required</span></div></div>
+  <div class= "form-group" ng-class="{error: myForm.available_link_numbers.$invalid}"><label class= "col-md-2"> available link numbers </label><div class="col-md-4"><input name="available_link_numbers" ng-model="customer.available_link_numbers" type= "text" class= "form-control" placeholder="available link numbers" required/><span ng-show="myForm.available_link_numbers.$dirty && myForm.available_link_numbers.$invalid" class="help-inline">Field Required</span></div></div>
+  <div class= "form-group" ng-class="{error: myForm.pricegraph7d_image_alt.$invalid}"><label class= "col-md-2"> price graph 7d image alt </label><div class="col-md-4"><input name="pricegraph7d_image_alt" ng-model="customer.pricegraph7d_image_alt" type= "text" class= "form-control" placeholder="price graph 7d image alt" required/><span ng-show="myForm.pricegraph7d_image_alt.$dirty && myForm.pricegraph7d_image_alt.$invalid" class="help-inline">Field Required</span></div></div>
+  <div class= "form-group" ng-class="{error: myForm.volume24h_link_text.$invalid}"><label class= "col-md-2"> volume 24h link text </label><div class="col-md-4"><input name="volume24h_link_text" ng-model="customer.volume24h_link_text" type= "text" class= "form-control" placeholder="volume 24h link text" required/><span ng-show="myForm.volume24h_link_text.$dirty && myForm.volume24h_link_text.$invalid" class="help-inline">Field Required</span></div></div>
+  <div class= "form-group" ng-class="{error: myForm.pricegraph7d_link.$invalid}"><label class= "col-md-2"> price graph 7d link </label><div class="col-md-4"><input name="pricegraph7d_link" ng-model="customer.pricegraph7d_link" type= "text" class= "form-control" placeholder="price graph 7d link" required/><span ng-show="myForm.pricegraph7d_link.$dirty && myForm.pricegraph7d_link.$invalid" class="help-inline">Field Required</span></div></div>
+  <div class= "form-group" ng-class="{error: myForm.price_link.$invalid}"><label class= "col-md-2"> price link </label><div class="col-md-4"><input name="price_link" ng-model="customer.price_link" type= "text" class= "form-control" placeholder="price link" required/><span ng-show="myForm.price_link.$dirty && myForm.price_link.$invalid" class="help-inline">Field Required</span></div></div>
+  <div class= "form-group" ng-class="{error: myForm.pricegraph7d_image.$invalid}"><label class= "col-md-2"> price graph 7d image </label><div class="col-md-4"><input name="pricegraph7d_image" ng-model="customer.pricegraph7d_image" type= "text" class= "form-control" placeholder="price graph 7d image" required/><span ng-show="myForm.pricegraph7d_image.$dirty && myForm.pricegraph7d_image.$invalid" class="help-inline">Field Required</span></div></div>
+  <div class= "form-group" ng-class="{error: myForm.volume24h_link_source.$invalid}"><label class= "col-md-2"> volume 24h link source </label><div class="col-md-4"><input name="volume24h_link_source" ng-model="customer.volume24h_link_source" type= "text" class= "form-control" placeholder="volume 24h link source" required/><span ng-show="myForm.volume24h_link_source.$dirty && myForm.volume24h_link_source.$invalid" class="help-inline">Field Required</span></div></div>
+  <div class= "form-group" ng-class="{error: myForm.change24h_value.$invalid}"><label class= "col-md-2"> change 24h value </label><div class="col-md-4"><input name="change24h_value" ng-model="customer.change24h_value" type= "text" class= "form-control" placeholder="change 24h value" required/><span ng-show="myForm.change24h_value.$dirty && myForm.change24h_value.$invalid" class="help-inline">Field Required</span></div></div>
+<div class= "form-group">
+    <label class= "col-md-2"></label>
+    <div class="col-md-4">
+    <a href="#/" class="btn">Cancel</a>
+        <button ng-click="saveCustomer(customer);"
+                ng-disabled="isClean() || myForm.$invalid"
+                class="btn btn-primary">{{buttonText}}</button>
+        <button ng-click="deleteCustomer(customer)"
+                ng-show="customer._id" class="btn btn-warning">Delete</button>
+    </div>
+</div>
+</div>
+</form>
+        </div></div>
+    </div>
+</div>
